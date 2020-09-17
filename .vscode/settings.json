@@ -5,7 +5,8 @@
         "options": [
             "-I./proto",
             "--go_out=plugins=grpc,paths=source_relative:./service",
-            "--grpc-gateway_out=logtostderr=true,paths=source_relative:./service"
+            "--grpc-gateway_out=logtostderr=true,paths=source_relative:./service",
+            "--swagger_out=logtostderr=true:./swagger"
         ]
     }
 }
