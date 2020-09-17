@@ -14,6 +14,7 @@ const (
 	address = "localhost:9999"
 )
 
+// Helloworld client
 func Helloworld() {
 	firstTime := time.Now().Unix()
 	// Set up a connection to the server.

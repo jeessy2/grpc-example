@@ -21,6 +21,7 @@ func (ser *server) SayHello(ctx context.Context, in *proto.HelloRequest) (*proto
 	return &proto.HelloReply{Message: "Hello " + in.GetName()}, nil
 }
 
+// Helloworld server
 func Helloworld() {
 	lis, err := net.Listen("tcp", port)
 	if err != nil {
