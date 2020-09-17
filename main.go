@@ -13,7 +13,7 @@ func main() {
 		go server.Helloworld()
 		server.HTTPServer()
 	default:
-		go client.Helloworld()
+		client.Helloworld()
 	}
 
 }
