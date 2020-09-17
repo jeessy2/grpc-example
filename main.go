@@ -10,9 +10,10 @@ func main() {
 
 	switch os.Args[1] {
 	case "server":
-		server.Helloworld()
+		go server.Helloworld()
+		server.HTTPServer()
 	default:
-		client.Helloworld()
+		go client.Helloworld()
 	}
 
 }

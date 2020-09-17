@@ -2,7 +2,7 @@ package server
 
 import (
 	"context"
-	"grpc-example/proto"
+	"grpc-example/service"
 	"log"
 	"net"
 
@@ -16,9 +16,9 @@ const (
 )
 
 // sayHello implements helloworld.GreeterServer.SayHello
-func (ser *server) SayHello(ctx context.Context, in *proto.HelloRequest) (*proto.HelloReply, error) {
+func (ser *server) SayHello(ctx context.Context, in *service.HelloRequest) (*service.HelloReply, error) {
 	log.Printf("Received: %v", in.GetName())
-	return &proto.HelloReply{Message: "Hello " + in.GetName()}, nil
+	return &service.HelloReply{Message: "Hello " + in.GetName()}, nil
 }
 
 // Helloworld server
@@ -30,7 +30,7 @@ func Helloworld() {
 		log.Println("listen on ", port)
 	}
 	s := grpc.NewServer()
-	proto.RegisterGreeterServer(s, &server{})
+	service.RegisterGreeterServer(s, &server{})
 	if err := s.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %v", err)
 	}

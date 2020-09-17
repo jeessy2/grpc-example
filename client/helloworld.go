@@ -3,7 +3,7 @@ package client
 import (
 	"context"
 	"fmt"
-	"grpc-example/proto"
+	"grpc-example/service"
 	"log"
 	"time"
 
@@ -23,17 +23,17 @@ func Helloworld() {
 		log.Fatalf("did not connect: %v", err)
 	}
 	defer conn.Close()
-	c := proto.NewGreeterClient(conn)
+	c := service.NewGreeterClient(conn)
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
 	defer cancel()
 	for i := 0; i < 100000; i++ {
-		r, err := c.SayHello(ctx, &proto.HelloRequest{Name: fmt.Sprint(i)})
+		r, err := c.SayHello(ctx, &service.HelloRequest{Name: fmt.Sprint(i)})
 		if err != nil {
 			log.Fatalf("could not greet: %v", err)
 		}
 		log.Printf("Greeting: %s", r.GetMessage())
 	}
-	log.Println("消耗时间(s):",time.Now().Unix()-firstTime)
+	log.Println("消耗时间(s):", time.Now().Unix()-firstTime)
 
 }

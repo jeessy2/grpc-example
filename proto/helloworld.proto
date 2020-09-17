@@ -1,12 +1,18 @@
 syntax = "proto3";
 
-option go_package = ".;proto";
-package proto;
+option go_package = ".;service";
+package service;
+
+import "google/api/annotations.proto";
 
 // 服务端定义
 service Greeter {
     // 服务端返馈信息方法
-    rpc SayHello (HelloRequest) returns (HelloReply) {}
+    rpc SayHello (HelloRequest) returns (HelloReply) {
+        option (google.api.http) = {
+            get: "/hello/{name}"
+        };
+    }
 }
 // 包含用户名的请求信息
 message HelloRequest {
